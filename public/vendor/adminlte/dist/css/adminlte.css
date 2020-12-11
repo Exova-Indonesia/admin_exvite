@@ -5898,6 +5898,10 @@ button.close, button.mailbox-attachment-close {
 a.close.disabled, a.disabled.mailbox-attachment-close {
   pointer-events: none;
 }
+.close:focus {
+  outline: 0;
+  box-shadow: none;
+}
 
 .toast {
   max-width: 350px;

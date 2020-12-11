@@ -5,25 +5,20 @@ namespace App\Exports;
 use App\Models\orders;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromView;
-use Maatwebsite\Excel\Concerns\Exportable;
 
-class OrdersExport implements FromView, ShouldAutoSize, WithCustomStartCell, WithHeadings, WithStyles
+class OrdersExport implements FromCollection, ShouldAutoSize, WithCustomStartCell, WithHeadings, WithStyles
 {
-    use Exportable;
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function view(): View
+    public function collection()
     {
-        return view('vendor.adminlte.data', [
-            'orders' => orders::all()
-        ]);
+        return orders::all();
     }
     public function startCell(): string {
         return 'B3';

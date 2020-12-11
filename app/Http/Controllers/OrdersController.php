@@ -19,6 +19,6 @@ class OrdersController extends Controller
         
     }
     public function export_excel() {
-        return (new OrdersExport)->download('data_orders.xlsx');
+        return Excel::download(new OrdersExport, 'data_orders.xlsx');
     }
 }
