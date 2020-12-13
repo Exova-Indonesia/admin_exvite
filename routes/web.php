@@ -20,3 +20,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/', [App\Http\Controllers\OrdersController::class, 'dashboard']);
 Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'orders']);
 Route::get('/orders/export', [App\Http\Controllers\OrdersController::class, 'export_excel']);
+Route::get('/tampil-modal/{id}', [App\Http\Controllers\OrdersController::class, 'tampilModal']);
+

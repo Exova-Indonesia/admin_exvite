@@ -39,31 +39,36 @@
     
     <!-- page script -->
     <script>
-$(document).ready(function () {
+    $(document).ready(function() {
       $(function () {
         $("#example1").DataTable({
           "responsive": true,
           "autoWidth": false,
         });
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-        });
       });
-
       $('#exampleModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
-      var recipient = button.data('whatever') // Extract info from data-* attributes
-      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var recipient = button.data('whatever')
+      var name = button.data('name')
+      $.ajaxSetup({ headers: { '_token' : '' } });
+
+      $.ajax({
+        url:"{{ url('/tampil-modal') }}/"+recipient,
+        type:'GET',
+        dataType:'html',
+        success:function(data){
+          $(".modal-body").html(data);
+        },
+        beforeSend:function() {
+          $(".modal-body").html("Sedang Memuat...");
+        },
+          error:function() {
+            $(".modal-body").html("Terjadi Kesalahan...");
+        }
+      });
+      
       var modal = $(this)
-      modal.find('.modal-title').text('New message to ' + recipient)
-      modal.find('.modal-body input').val(recipient)
+      modal.find('.modal-title').text(name)
   })
 });
     </script>

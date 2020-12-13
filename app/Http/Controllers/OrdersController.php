@@ -21,4 +21,8 @@ class OrdersController extends Controller
     public function export_excel() {
         return Excel::download(new OrdersExport, 'data_orders.xlsx');
     }
+    public function tampilModal($id) {
+        $orders = \App\Models\orders::find([$id]);
+        return view('vendor/adminlte/modals-data', ['orders' => $orders]);
+    }
 }

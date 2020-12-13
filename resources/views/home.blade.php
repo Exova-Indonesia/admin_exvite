@@ -26,10 +26,6 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-
     <!-- DataTables -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -38,20 +34,37 @@
     
     <!-- page script -->
     <script>
+    $(document).ready(function() {
       $(function () {
         $("#example1").DataTable({
           "responsive": true,
           "autoWidth": false,
         });
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-        });
       });
+      $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever')
+      var name = button.data('name')
+      $.ajaxSetup({ headers: { '_token' : '' } });
+
+      $.ajax({
+        url:"{{ url('/tampil-modal') }}/"+recipient,
+        type:'GET',
+        dataType:'html',
+        success:function(data){
+          $(".modal-body").html(data);
+        },
+        beforeSend:function() {
+          $(".modal-body").html("Sedang Memuat...");
+        },
+          error:function() {
+            $(".modal-body").html("Terjadi Kesalahan...");
+        }
+      });
+      
+      var modal = $(this)
+      modal.find('.modal-title').text(name)
+  })
+});
     </script>
 @stop
