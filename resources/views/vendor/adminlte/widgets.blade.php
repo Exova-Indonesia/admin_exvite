@@ -4,7 +4,7 @@
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $OrdersTemplate }}</h3>
 
                 <p>Template Orders</p>
               </div>
@@ -18,7 +18,7 @@
             <!-- small card -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>564</h3>
+                <h3>{{ $OrdersCustom }}</h3>
 
                 <p>Custom Orders</p>
               </div>
@@ -32,7 +32,7 @@
             <!-- small card -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $CountUsers }}</h3>
 
                 <p>Users</p>
               </div>
@@ -46,7 +46,7 @@
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $TotalOrders }}</h3>
 
                 <p>Total Orders</p>
               </div>

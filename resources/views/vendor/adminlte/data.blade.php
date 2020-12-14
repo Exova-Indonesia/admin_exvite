@@ -11,7 +11,7 @@
                 <h3 class="card-title">Last Orders</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body table-responsive">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -73,8 +73,6 @@
         </button>
       </div>
       <div class="modal-body">
-      </div>
-      <div class="modal-footer">
       </div>
     </div>
   </div>
