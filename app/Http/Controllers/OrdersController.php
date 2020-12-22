@@ -15,12 +15,12 @@ class OrdersController extends Controller
         $this->middleware('auth');
     }
     public function dashboard() {
-        $orders = orders::first()->all()->take(8);
-        $custom = orders::first()->where('order_type', 'Custom')->take(3)->get();
-        $CustomOrders = orders::where('order_type', 'Custom')->count();
-        $countOrders = orders::where('order_type', 'Template')->count();
+        $orders = orders::first()->all()->take(5);
+        $custom = orders::where('order_type', 'Custom')->where('status', 'success')->take(3)->get();
+        $CustomOrders = orders::where('order_type', 'Custom')->where('status', 'success')->count();
+        $countOrders = orders::where('order_type', 'Template')->where('status', 'success')->count();
         $CountUser = User::count();
-        $TotalOrders = orders::count();
+        $TotalOrders = orders::where('status', 'success')->count();
         $chartOrders = orders::select('order_price', orders::raw('count(*) as total'))->groupby('order_price')->get();
         return view('/home', ['orders' => $orders, 'custom' => $custom, 
         'OrdersTemplate' => $countOrders, 'OrdersCustom' => $CustomOrders,

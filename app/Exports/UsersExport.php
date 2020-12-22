@@ -2,23 +2,23 @@
 
 namespace App\Exports;
 
-use App\Models\orders;
+use App\Models\User;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class OrdersExport implements FromCollection, ShouldAutoSize, WithCustomStartCell, WithHeadings, WithStyles
+class UsersExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return orders::all();
+        return User::all();
     }
     public function startCell(): string {
         return 'B3';
@@ -27,13 +27,12 @@ class OrdersExport implements FromCollection, ShouldAutoSize, WithCustomStartCel
     {
         return [
             'ID',
-            'User ID',
-            'Order ID',
-            'Order Name',
-            'Order Price',
-            'Order Type',
-            'Payment Type',
-            'Date',
+            'Name',
+            'Email',
+            'Phone',
+            'Provider',
+            'Provider ID',
+            'Join At',
         ];
     }
     public function styles(Worksheet $sheet)

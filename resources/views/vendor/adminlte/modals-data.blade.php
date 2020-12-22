@@ -22,6 +22,10 @@
             <td>Order Price </td>
             <td>IDR {{ $o->order_price }}</td>
         </tr>
+        <tr>
+            <td>Payment Status </td>
+            <td>{{ $o->status }}</td>
+        </tr>
         @endforeach
     </tbody>
 </table>

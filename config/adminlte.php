@@ -265,7 +265,7 @@ return [
         ],
         [
             'text' => 'Templates',
-            'url'  => '/templates',
+            'url'  => '/templates-list',
             'icon' => 'fas fa-fw fa-layer-group',
         ],
         [
@@ -275,8 +275,17 @@ return [
         ],
         [
             'text' => 'Upload',
-            'url'  => '/upload',
             'icon' => 'fas fa-fw fa-upload',
+            'submenu' => [
+                [
+                    'text' => 'Upload Template',
+                    'url' => 'upload/template/'.rand(),
+                ],
+                [
+                    'text' => 'Upload Blogs',
+                    'url' => 'upload/blogs',
+                ],
+            ],
         ],
     ],
 

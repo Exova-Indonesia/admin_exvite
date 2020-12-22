@@ -15,11 +15,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Orders</th>
+                    <th>Order Name</th>
+                    <th>Orders Type</th>
                     <th>Date</th>
                     <th>Payment</th>
                     <th>Price</th>
+                    <th>Status</th>
                     <th width="30">Action</th>
                   </tr>
                   </thead>
@@ -31,10 +32,19 @@
                     <td>{{ $o->created_at }}</td>
                     <td>{{ $o->payment_type }}</td>
                     <td>{{ $o->order_price }}</td>
-                    <td><button type="button" class="btn btn-success" data-toggle="modal" 
+                    <td>
+                      @if($o->status == 'success')
+                        <span class="badge badge-pill badge-success">{{ $o->status }}</span>
+                      @elseif($o->status == 'pending')
+                        <span class="badge badge-pill badge-warning">{{ $o->status }}</span>
+                      @elseif($o->status == 'canceled')
+                        <span class="badge badge-pill badge-danger">{{ $o->status }}</span>
+                      @endif
+                    </td>
+                    <td><span type="button" class="badge badge-success" data-toggle="modal" 
                     data-target="#exampleModal" data-whatever="{{ $o->id }}" data-name="{{ $o->order_name }}">
                       <i class="fa fa-eye"></i>
-                    </button></td>
+                    </span></td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -45,6 +55,7 @@
                     <th>Date</th>
                     <th>Payment</th>
                     <th>Price</th>
+                    <th>Status</th>
                     <th width="30">Action</th>
                   </tr>
                   </tfoot>

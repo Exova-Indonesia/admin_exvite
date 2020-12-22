@@ -9,7 +9,7 @@
 @section('content')
   <div class="m-3">
     <p class="text-right">
-        <button class="btn btn-success"><a class="text-white" href="/orders/export">Export Data</a></button>
+        <button class="btn btn-success"><a class="text-white" href="/users/export">Export Data</a></button>
     </p>
   </div>
 
@@ -47,7 +47,8 @@
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
                       {{ 'Suspend' }}
                     </button>
-                    <button type="button" class="btn btn-success">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#shoutOut" 
+                    data-whatever="{{ $o->id }}" data-name="{{ $o->name }}">
                       {{ 'Shout Out' }}
                     </button>
                     </td>
@@ -78,12 +79,12 @@
     <!-- /.content -->
   </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<!-- Modal Suspend -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="Suspend" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Caution !</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Caution Suspend Verification</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -94,6 +95,28 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-danger">Suspend</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Shout Out -->
+<div class="modal fade bd-example-modal-lg" id="shoutOut" tabindex="-1" role="dialog" aria-labelledby="shoutOut" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shoutOutTitle">Shout out </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control mb-3" name="subyek" placeholder="Subyek">
+        <textarea type="text" class="form-control" name="message" placeholder="Write a text here"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Send</button>
       </div>
     </div>
   </div>
@@ -112,6 +135,7 @@
   <link rel="stylesheet" href="vendor/adminlte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/summernote/summernote-bs4.css">
 @stop
 
 @section('js')
@@ -121,6 +145,7 @@
     <script src="vendor/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="vendor/summernote/summernote-bs4.min.js"></script>
     
     <!-- page script -->
     <script>
@@ -131,6 +156,16 @@
           "autoWidth": false,
         });
       });
-});
+    $('#shoutOut').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever')
+      var name = button.data('name')
+      var modal = $(this)
+      modal.find('#shoutOutTitle').text("Shout out "+name)
+    });
+    $(function () {
+      $('.textarea').summernote()
+    })
+  });
     </script>
 @stop

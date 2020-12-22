@@ -9,10 +9,10 @@
 @section('content')
   @include('adminlte::widgets')
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
       @include('adminlte::data')
     </div>
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="card card-success">
           <div class="card-header">
             <h3 class="card-title">Orders Growth</h3>
@@ -40,14 +40,12 @@
               </div>
               </div>
             <div class="card-body">
-            @if($custom == '')
+            @if($custom !== '')
               <table class="table table-bordered">
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Orders</th>
                     <th>Date</th>
-                    <th>Payment</th>
                     <th>Price</th>
                     <th width="30">Action</th>
                   </tr>
@@ -56,14 +54,12 @@
                   @foreach($custom as $c)
                     <tr>
                       <td>{{ $c->order_name }}</td>
-                      <td>{{ $c->order_type }}</td>
                       <td>{{ $c->created_at }}</td>
-                      <td>{{ $c->payment_type }}</td>
                       <td>{{ $c->order_price }}</td>
-                      <td><button type="button" class="btn btn-success" data-toggle="modal" 
+                      <td><span type="button" class="badge badge-success" data-toggle="modal" 
                       data-target="#exampleModal" data-whatever="{{ $c->id }}" data-name="{{ $c->order_name }}">
                         <i class="fa fa-eye"></i>
-                      </button></td>
+                      </span></td>
                     </tr>
                   @endforeach
                 </tbody>
