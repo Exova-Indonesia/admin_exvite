@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Admin | Exvite',
+    'title' => 'Admin | VirtualMaker',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Exvite</b>',
-    'logo_img' => '',
+    'logo' => '<b>VirtualMaker</b>',
+    'logo_img' => 'https://assets.exova.id/img/1.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'usermenu_enabled' => true,
+    'usermenu_enabled' => false,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
@@ -267,11 +267,6 @@ return [
             'text' => 'Templates',
             'url'  => '/templates-list',
             'icon' => 'fas fa-fw fa-layer-group',
-        ],
-        [
-            'text' => 'Pages',
-            'url'  => '/pages',
-            'icon' => 'fas fa-fw fa-clone',
         ],
         [
             'text' => 'Upload',

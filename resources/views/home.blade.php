@@ -12,6 +12,7 @@
     <div class="col-md-7">
       @include('adminlte::data')
     </div>
+    <!--
       <div class="col-md-5">
         <div class="card card-success">
           <div class="card-header">
@@ -29,6 +30,8 @@
             </div>
           </div>
         </div>
+    -->
+      <div class="col-md-5">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Custom Request</h3>
@@ -54,8 +57,8 @@
                   @foreach($custom as $c)
                     <tr>
                       <td>{{ $c->order_name }}</td>
-                      <td>{{ $c->created_at }}</td>
-                      <td>{{ $c->order_price }}</td>
+                      <td>{{ date('M j', strtotime($c->created_at)) }}</td>
+                      <td>IDR {{ number_format($c->order_price, 2) }}</td>
                       <td><span type="button" class="badge badge-success" data-toggle="modal" 
                       data-target="#exampleModal" data-whatever="{{ $c->id }}" data-name="{{ $c->order_name }}">
                         <i class="fa fa-eye"></i>
@@ -70,6 +73,7 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 @stop
@@ -125,12 +129,14 @@
       modal.find('.modal-title').text(name)
   })
 });
+
+/*
 $(function () {
 
   var areaChartData = {
       labels  : [
         @foreach($chartOrders as $ch)
-              {{ $ch->order_price}},
+              '{{ date('M', strtotime($ch->created_at)) }}',
         @endforeach
       ],
       datasets: [
@@ -150,7 +156,7 @@ $(function () {
           ]
         },
         {
-          label               : 'Custom Orders',
+          label               : '',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -159,9 +165,6 @@ $(function () {
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
           data                : [
-            @foreach($chartOrders as $ch)
-              {{ $ch->total}},
-            @endforeach
           ]
         },
       ]
@@ -186,5 +189,6 @@ var barChartCanvas = $('#barChart').get(0).getContext('2d')
       options: barChartOptions
     })
   })
+  */
     </script>
 @stop

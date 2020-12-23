@@ -12,7 +12,7 @@
         </tr>
         <tr>
             <td>Order Date </td>
-            <td>{{ $o->created_at }}</td>
+            <td>{{ date('F j, Y H:i a', strtotime($o->created_at)) }}</td>
         </tr>
         <tr>
             <td>Payment Type </td>
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td>Order Price </td>
-            <td>IDR {{ $o->order_price }}</td>
+            <td>IDR {{ number_format($o->order_price, 2) }}</td>
         </tr>
         <tr>
             <td>Payment Status </td>

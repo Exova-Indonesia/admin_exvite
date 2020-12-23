@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header bg-success">
                 <h3 class="card-title">Last Orders</h3>
               </div>
               <!-- /.card-header -->
@@ -29,9 +29,9 @@
                   <tr>
                     <td>{{ $o->order_name }}</td>
                     <td>{{ $o->order_type }}</td>
-                    <td>{{ $o->created_at }}</td>
+                    <td>{{ date('M j', strtotime($o->created_at)) }}</td>
                     <td>{{ $o->payment_type }}</td>
-                    <td>{{ $o->order_price }}</td>
+                    <td>IDR {{ number_format($o->order_price, 2) }}</td>
                     <td>
                       @if($o->status == 'success')
                         <span class="badge badge-pill badge-success">{{ $o->status }}</span>
