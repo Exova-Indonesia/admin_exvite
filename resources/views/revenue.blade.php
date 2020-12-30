@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Revenue</h1>
 <div class="row">
-<div class="col-md-8">
+<div class="col-md-7">
     <div class="card card-success">
           <div class="card-header">
             <h3 class="card-title">Payment</h3>
@@ -82,8 +82,11 @@
           <!-- ./col -->
         </div>
         <!-- /.row -->
+      <div>
+        <a class="btn btn-success text-white float-right" href="/revenue/export">Export Revenue</a>
+      </div>
 </div>
-<div class="col-md-4">
+<div class="col-md-5">
             <div class="card">
               <div class="card-header bg-primary">
                 <h3 class="card-title">Last Payment</h3>
@@ -105,7 +108,7 @@
                     <td>{{ $o->order_name }}</td>
                     <td>{{ $o->created_at }}</td>
                     <td>{{ $o->payment_type }}</td>
-                    <td>{{ $o->order_price }}</td>
+                    <td>IDR {{ number_format($o->order_price, 2) }}</td>
                   </tr>
                   @endforeach
                   </tbody>

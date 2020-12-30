@@ -22,7 +22,6 @@ Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'orders']);
 Route::get('/tampil-modal/{id}', [App\Http\Controllers\OrdersController::class, 'tampilModal']);
 //Users
 Route::get('/users', [App\Http\Controllers\UserController::class, 'users']);
-Route::get('/users/export', [App\Http\Controllers\UserController::class, 'export_excel']);
 //Upload
 Route::get('upload/blogs', [App\Http\Controllers\UploadController::class, 'upload_blogs']);
 Route::get('upload/template/{templates_id}', [App\Http\Controllers\UploadController::class, 'upload_template']);
@@ -38,6 +37,8 @@ Route::get('/revenue', [App\Http\controllers\RevenueControllers::class, 'data'])
 
 //Export Data
 Route::get('/orders/export', [App\Http\Controllers\OrdersController::class, 'export_excel']);
+Route::get('/users/export', [App\Http\Controllers\UserController::class, 'export_excel']);
+Route::get('/revenue/export', [App\Http\controllers\RevenueControllers::class, 'export_excel']);
 
 //Import Data
 Route::get('/import', [App\Http\controllers\ImportController::class, 'dataspam']);
