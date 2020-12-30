@@ -28,7 +28,7 @@
             <!-- small card -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{ '1234' }}</h3>
+                <h3>IDR {{ number_format($bank, 2) }}</h3>
 
                 <p>Bank Transfer</p>
               </div>
@@ -42,7 +42,7 @@
             <!-- small card -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{ '3456' }}</h3>
+                <h3>IDR {{ number_format($gopay, 2) }}</h3>
 
                 <p>Go-pay</p>
               </div>
@@ -56,7 +56,7 @@
             <!-- small card -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3>{{ '6789' }}</h3>
+                <h3>{{ $tpay }}</h3>
 
                 <p>Total Payments</p>
               </div>
@@ -70,7 +70,7 @@
             <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ '9087' }}</h3>
+                <h3>IDR {{ number_format($trev, 2) }}</h3>
 
                 <p>Total Revenue</p>
               </div>

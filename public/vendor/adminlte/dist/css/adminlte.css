@@ -11750,22 +11750,25 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-left: .8rem;
   margin-right: .5rem;
   margin-top: -3px;
-  max-height: 33px;
-  width: auto;
+  height: 40px !important;
+  width: 40px !important;
+  object-fit: cover !important;
 }
 
 .brand-link .brand-image-xs {
   float: left;
   line-height: .8;
   margin-top: -.1rem;
-  max-height: 33px;
-  width: auto;
+  height: 40px !important;
+  width: 40px !important;
+  object-fit: cover !important;
 }
 
 .brand-link .brand-image-xl {
   line-height: .8;
-  max-height: 40px;
-  width: auto;
+  height: 40px !important;
+  width: 40px !important;
+  object-fit: cover !important;
 }
 
 .brand-link .brand-image-xl.single {

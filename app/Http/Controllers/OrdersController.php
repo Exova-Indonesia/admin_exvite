@@ -19,7 +19,7 @@ class OrdersController extends Controller
         $orders = orders::first()->all()->take(5);
         $custom = orders::where('order_type', 'Custom')->where('status', 'success')->take(10)->get();
         $CustomOrders = orders::where('order_type', 'Custom')->where('status', 'success')->count();
-        $countOrders = orders::where('order_type', 'Template')->where('status', 'success')->count();
+        $countOrders = orders::where('order_type', 'Templates')->where('status', 'success')->count();
         $CountUser = User::count();
         $TotalOrders = orders::where('status', 'success')->count();
         $chartOrders = orders::select('*', orders::raw('count(id) as total'))->
@@ -34,7 +34,7 @@ class OrdersController extends Controller
         
     }
     public function export_excel() {
-        return Excel::download(new OrdersExport, 'data_orders.xlsx');
+        return (new OrdersExport)->download('data_orders.xlsx');
     }
     public function tampilModal($id) {
         $orders = \App\Models\orders::find([$id]);

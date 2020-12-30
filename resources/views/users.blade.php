@@ -44,11 +44,12 @@
                     <td>{{ $o->phone }}</td>
                     <td>{{ date('F j, Y', strtotime($o->created_at)) }}</td>
                     <td>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" 
+                    data-email="{{ $o->email }}" data-name="{{ $o->name }}">
                       {{ 'Suspend' }}
                     </button>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#shoutOut" 
-                    data-whatever="{{ $o->id }}" data-name="{{ $o->name }}">
+                    data-email="{{ $o->email }}" data-name="{{ $o->name }}">
                       {{ 'Shout Out' }}
                     </button>
                     </td>
@@ -83,6 +84,9 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="Suspend" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+    <form method="POST" action="{{ url('/suspend') }}">
+    @csrf
+      <input type="hidden" class="form-control mb-3" id="emails" name="email">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Caution Suspend Verification</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -90,12 +94,12 @@
         </button>
       </div>
       <div class="modal-body">
-        Are You Sure ?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Suspend</button>
+        <button type="submit" class="btn btn-danger">Suspend</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -111,13 +115,17 @@
         </button>
       </div>
       <div class="modal-body">
+      <form method="POST" action="{{ url('/shoutout') }}">
+      @csrf
+        <input type="hidden" class="form-control mb-3" id="email" name="email">
         <input type="text" class="form-control mb-3" name="subyek" placeholder="Subyek">
-        <textarea type="text" class="form-control" name="message" placeholder="Write a text here"></textarea>
+        <textarea type="text" class="form-control" name="pesan" placeholder="Write a text here"></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Send</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Send</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -136,6 +144,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="vendor/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="{{ url('vendor/toastr/toastr.min.css') }}">
 @stop
 
 @section('js')
@@ -146,6 +155,7 @@
     <script src="vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <script src="vendor/summernote/summernote-bs4.min.js"></script>
+    <script src="{{ url('vendor/toastr/toastr.min.js') }}"></script>
     
     <!-- page script -->
     <script>
@@ -158,14 +168,29 @@
       });
     $('#shoutOut').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget) // Button that triggered the modal
-      var recipient = button.data('whatever')
+      var recipient = button.data('email')
       var name = button.data('name')
       var modal = $(this)
       modal.find('#shoutOutTitle').text("Shout out "+name)
+      $('#email').val(recipient);
     });
+
+    $('#exampleModalCenter').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('email')
+      var name = button.data('name')
+      var modal = $(this)
+      modal.find('.modal-body').text("Are You Sure Suspend "+name+"?")
+      $('#email').val(recipient);
+      $('#emails').val(recipient);
+    });
+
     $(function () {
       $('.textarea').summernote()
     })
+    @if(session('status'))
+    toastr.success("{{ session('status') }}");
+    @endif
   });
     </script>
 @stop

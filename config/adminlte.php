@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Admin | VirtualMaker',
+    'title' => 'Admin | Exova Invitation',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>VirtualMaker</b>',
-    'logo_img' => 'https://assets.exova.id/img/1.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Exova Indonesia</b>',
+    'logo_img' => 'https://assets.exova.id/img/bg-blue-ex.jpg',
+    'logo_img_class' => 'brand-image rounded-circle w-40 h-40',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => '',
+    'logo_img_alt' => 'Exova Indonesia Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -267,6 +267,11 @@ return [
             'text' => 'Templates',
             'url'  => '/templates-list',
             'icon' => 'fas fa-fw fa-layer-group',
+        ],
+        [
+            'text' => 'Import Data',
+            'url'  => '/import',
+            'icon' => 'fas fa-fw fa-download',
         ],
         [
             'text' => 'Upload',

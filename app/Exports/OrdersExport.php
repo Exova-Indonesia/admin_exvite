@@ -3,38 +3,39 @@
 namespace App\Exports;
 
 use App\Models\orders;
+/*
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+*/
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class OrdersExport implements FromCollection, ShouldAutoSize, WithCustomStartCell, WithHeadings, WithStyles
+class OrdersExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    use Exportable;
+    public function view(): View
     {
-        return orders::all();
+        return view('ordersexport', [
+            'orders' => orders::all()
+        ]);
     }
+
+    /*
     public function startCell(): string {
         return 'B3';
     }
     public function headings(): array
     {
-        return [
-            'ID',
-            'User ID',
-            'Order ID',
-            'Order Name',
-            'Order Price',
-            'Order Type',
-            'Payment Type',
-            'Date',
-        ];
+
     }
     public function styles(Worksheet $sheet)
     {
@@ -43,4 +44,5 @@ class OrdersExport implements FromCollection, ShouldAutoSize, WithCustomStartCel
             3   => ['font' => ['bold' => true]]
         ];
     }
+    */
 }

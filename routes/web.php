@@ -19,7 +19,6 @@ Auth::routes();
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/', [App\Http\Controllers\OrdersController::class, 'dashboard']);
 Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'orders']);
-Route::get('/orders/export', [App\Http\Controllers\OrdersController::class, 'export_excel']);
 Route::get('/tampil-modal/{id}', [App\Http\Controllers\OrdersController::class, 'tampilModal']);
 //Users
 Route::get('/users', [App\Http\Controllers\UserController::class, 'users']);
@@ -37,10 +36,22 @@ Route::get('/templates-list', [App\Http\Controllers\TemplatesController::class, 
 
 Route::get('/revenue', [App\Http\controllers\RevenueControllers::class, 'data']);
 
+//Export Data
+Route::get('/orders/export', [App\Http\Controllers\OrdersController::class, 'export_excel']);
+
+//Import Data
+Route::get('/import', [App\Http\controllers\ImportController::class, 'dataspam']);
+Route::post('/import/data', [App\Http\controllers\ImportController::class, 'importdata']);
+
 //Delete
 Route::get('/delete/{id}/files', [App\Http\controllers\DeleteController::class, 'delete_files']);
 Route::get('/delete/{id}/thumbnail', [App\Http\controllers\DeleteController::class, 'delete_thumbnail']);
 
+//Users Notification
+Route::post('/shoutout', [App\Http\Controllers\UserController::class, 'shoutout']);
+Route::post('/suspend', [App\Http\Controllers\UserController::class, 'suspend']);
+
+Route::get('/email', [App\Http\Controllers\UserController::class, 'email']);
 
 Route::get('/uploads', function() {
     return view('vendor/adminlte/uploads');

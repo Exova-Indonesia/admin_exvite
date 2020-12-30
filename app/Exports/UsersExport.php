@@ -3,43 +3,31 @@
 namespace App\Exports;
 
 use App\Models\User;
+/*
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+*/
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class UsersExport implements FromCollection
+class UsersExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+
+    use Exportable;
+
+    public function view(): View
     {
-        return User::all();
-    }
-    public function startCell(): string {
-        return 'B3';
-    }
-    public function headings(): array
-    {
-        return [
-            'ID',
-            'Name',
-            'Email',
-            'Phone',
-            'Provider',
-            'Provider ID',
-            'Join At',
-        ];
-    }
-    public function styles(Worksheet $sheet)
-    {
-        return [
-            // Style the first row as bold text.
-            3   => ['font' => ['bold' => true]]
-        ];
+        return view('usersexport', [
+            'users' => User::all()
+        ]);
     }
 }
